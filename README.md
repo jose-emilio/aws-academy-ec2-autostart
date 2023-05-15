@@ -13,14 +13,14 @@ El modelo arquitectónico utiliza los servicios:
 * AWS Lambda
 * Amazon CloudWatch Logs
 
-Este modelo arquitectónico permitirá iniciar aquellas instancias EC2 que hayan sido detenidas por el Lab de forma selectiva. Para ello, simplemente habrá que etiquetar las instancias que se deseen mantener en ejecución con el par clave-valor `inactividad : no`
+Este modelo permitirá iniciar aquellas instancias EC2 que hayan sido detenidas por el Lab de forma selectiva. Para ello, simplemente habrá que etiquetar las instancias que se deseen mantener en ejecución con el par clave-valor `inactividad : no`
 
 ## **Requerimientos**
 
 * Disponer de una cuenta en un curso de AWS Academy Learner Labs
 * Configurar un entorno para AWS CLI con las credenciales del laboratorio
 
-## **Instrucciones**
+## **Instrucciones** (manual)
 
 1. Comprimir el archivo con el código de la función Lambda, que se encargará de iniciar las instancias EC2 en formato ZIP:
 
@@ -51,3 +51,13 @@ Este modelo arquitectónico permitirá iniciar aquellas instancias EC2 que hayan
         aws lambda add-permission --function-name iniciar-instancia-parada --statement-id " EventBridge-iniciar-instancia" --action "lambda:InvokeFunction" --principal "events.amazonaws.com" --source-arn $arnregla --region $region
 
 8. Sólo restaría etiquetar las instancias que se deseen mantener en ejecución con la etiqueta `inactividad : no`
+
+## **Instrucciones** (AWS CloudFormation)
+
+1. Seleccionar la región donde se desplegará la solución. Actualmente los AWS Academy Learner Labs sólo permiten las regiones `us-east-1` y `us-west-2`
+
+        region=us-east-1
+
+2. Para desplegar la plantilla de AWS CloudFormation con la solución, bastará con ejecutar:
+
+        aws cloudformation deploy --template-file ec2-autostart.yml --stack-name ec2-autostart --region $region
