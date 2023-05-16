@@ -48,7 +48,7 @@ Este modelo permitirá iniciar aquellas instancias EC2 que hayan sido detenidas 
 
 7. Por último, se conceden permisos a Amazon EventBridge para que pueda disparar la función Lambda cuando ocurra un evento. Para ello, se modifica la política de la función Lambda:
 
-        aws lambda add-permission --function-name iniciar-instancia-parada --statement-id " EventBridge-iniciar-instancia" --action "lambda:InvokeFunction" --principal "events.amazonaws.com" --source-arn $arnregla --region $region
+        aws lambda add-permission --function-name iniciar-instancia-parada --statement-id "EventBridge-iniciar-instancia" --action "lambda:InvokeFunction" --principal "events.amazonaws.com" --source-arn $arnregla --region $region
 
 8. Sólo restaría etiquetar las instancias que se deseen mantener en ejecución con la etiqueta `inactividad : no`
 
