@@ -11,6 +11,8 @@ La arquitectura propuesta es:
 
 ![Arquitectura](images/arch.png)
 
+<img align="center" src="images/arch.png"/>
+
 El modelo arquitectónico utiliza los servicios:
 * Amazon EventBridge
 * AWS Lambda
