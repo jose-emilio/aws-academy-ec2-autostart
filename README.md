@@ -1,3 +1,6 @@
+<style>
+img {display:block;float:none;margin-left:auto;margin-right:auto}
+</style>
 # **AWS Academy EC2 Auto Start**
 
 AWS Academy Learner Labs proporciona un <em>sandbox</em> para la creación de recursos en la nube de AWS. Para no malgastar los créditos que disponen los alumnos, el laboratorio detiene todas las instancias EC2 lanzadas. Sin embargo, en ocasiones puede ser interesante para un alumno mantener iniciada una instancia EC2 más allá de la vida del Learner Lab.
