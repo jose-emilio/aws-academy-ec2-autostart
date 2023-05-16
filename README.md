@@ -54,16 +54,20 @@ Este modelo permitirá iniciar aquellas instancias EC2 que hayan sido detenidas 
 
 ## **Instrucciones** (AWS CloudFormation)
 
-1. Seleccionar la región donde se desplegará la solución. Actualmente los AWS Academy Learner Labs sólo permiten las regiones `us-east-1` y `us-west-2`
+1. Comprimir el archivo con el código de la función Lambda, que se encargará de iniciar las instancias EC2 en formato ZIP:
+
+        zip iniciar_instancia.zip iniciar_instancia.py
+
+2. Seleccionar la región donde se desplegará la solución. Actualmente los AWS Academy Learner Labs sólo permiten las regiones `us-east-1` y `us-west-2`
 
         region=us-east-1
 
-2. Se empaqueta la plantilla de AWS CloudFormation. En el valor `<NombreBucket>` debe indicarse un bucket de S3 previamente creado en la misma región donde vaya a desplegarse la solución:
+3. Se empaqueta la plantilla de AWS CloudFormation. En el valor `<NombreBucket>` debe indicarse un bucket de S3 previamente creado en la misma región donde vaya a desplegarse la solución:
 
         s3bucket=<NombreBucket>
 
         aws cloudformation package --template-file ec2-autostart.yml --output-template-file ec2-autostart-transformed.yml --s3-bucket $s3bucket --region $region
 
-3. Para desplegar la plantilla de AWS CloudFormation con la solución, bastará con ejecutar:
+4. Para desplegar la plantilla de AWS CloudFormation con la solución, bastará con ejecutar:
 
         aws cloudformation deploy --template-file ec2-autostart-transformed.yml --stack-name ec2-autostart --region $region
