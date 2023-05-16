@@ -61,9 +61,9 @@ Este modelo permitirá iniciar aquellas instancias EC2 que hayan sido detenidas 
 2. Se empaqueta la plantilla de AWS CloudFormation. En el valor `<NombreBucket>` debe indicarse un bucket de S3 previamente creado en la misma región donde vaya a desplegarse la solución:
 
         s3bucket=<NombreBucket>
-        
+
         aws cloudformation package --template-file ec2-autostart.yml --output-template-file ec2-autostart-transformed.yml --s3-bucket $s3bucket --region $region
 
 3. Para desplegar la plantilla de AWS CloudFormation con la solución, bastará con ejecutar:
 
-        aws cloudformation deploy --template-file ec2-autostart.yml --stack-name ec2-autostart --region $region
+        aws cloudformation deploy --template-file ec2-autostart-transformed.yml --stack-name ec2-autostart --region $region
