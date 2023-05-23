@@ -1,24 +1,27 @@
 # **AWS Academy EC2 Auto Start**
 
+## **Objetivo**
+
 AWS Academy Learner Labs proporciona un <em>sandbox</em> para la creación de recursos en la nube de AWS. Para no malgastar los créditos que disponen los alumnos, el laboratorio detiene todas las instancias EC2 lanzadas. Sin embargo, en ocasiones puede ser interesante para un alumno mantener iniciada una instancia EC2 más allá de la vida del Learner Lab.
 
-La solución propuesta permite etiquetar las instancias EC2 para que, una vez cerrada la sesión en AWS Learner Labs vuelva a lanzar las instancias EC2 etiquetadas en la región donde se despliegue la solución.
-
-La arquitectura propuesta es:
-
-![Arquitectura](images/arch.png)
-
-El modelo arquitectónico utiliza los servicios:
-* Amazon EventBridge
-* AWS Lambda
-* Amazon CloudWatch Logs
-
-Este modelo permitirá iniciar aquellas instancias EC2 que hayan sido detenidas por el Lab de forma selectiva. Para ello, simplemente habrá que etiquetar las instancias que se deseen mantener en ejecución con el par clave-valor `inactividad : no`
+La solución propuesta permite etiquetar las instancias EC2 con el par clave-valor `inactividad : no` para que, una vez cerrada la sesión en AWS Learner Labs vuelva a lanzar las instancias EC2 etiquetadas en la región donde se despliegue la solución.
 
 ## **Requerimientos**
 
 * Disponer de una cuenta en un curso de AWS Academy Learner Labs
 * Configurar un entorno para AWS CLI con las credenciales del laboratorio
+
+## **Arquitectura propuesta**
+
+<p align="center">
+  <img src="images/arch.png">
+</p>
+
+## **Servicios utilizados**
+
+* **Amazon EventBridge** para definir una regla sobre un bus de eventos que se dispare cada vez que se detiene una instancia etiquetada con el par clave valor `inactividad : no` 
+* **AWS Lambda** para implementar la lógica del inicio de la instancia etiquetada
+* **Amazon CloudWatch Logs** para recolectar los registros de ejecución de la función Lambda
 
 ## **Instrucciones** (manual)
 
